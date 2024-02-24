@@ -1,6 +1,6 @@
 ﻿using Application.Interfaces;
 
-namespace Domain.Interfaces.Adresser
+namespace ConsoleUI.Logger
 {
     internal class LoggerReplacer : ILoggerReplacer
     {
