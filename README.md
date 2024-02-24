@@ -1,4 +1,4 @@
-#Page replacement algorithms in operating Systems by c#
+# Page replacement algorithms in operating Systems by c#
 
 ## Replacement algorithms
 
