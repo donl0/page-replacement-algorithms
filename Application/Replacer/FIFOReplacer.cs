@@ -25,16 +25,16 @@ namespace Application.Replacer
 
         public override void Replace(int newPage)
         {
-            var success = _tempPages.TryDequeue(out int removedPage);
+            var success = _tempPages.TryDequeue(out int pageToRemove);
 
             if (success == false)
-                throw new ArgumentNullException("Alghoritm hasn't been notified");
+                throw new ArgumentNullException("Alghorithm hasn't been notified");
 
-            RemovePage(removedPage);
+            RemovePage(pageToRemove);
             _tempPages.Enqueue(newPage);
             AddPage(newPage);
 
-            _logger.Log(removedPage, newPage);
+            _logger.Log(pageToRemove, newPage);
         }
     }
 }
