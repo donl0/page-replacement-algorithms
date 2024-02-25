@@ -1,9 +1,4 @@
-﻿using Application.Adresser;
-using Application.Interfaces;
-using Application.Replacer;
-using ConsoleUI.Logger;
-using Domain.Interfaces.Adresser;
-using Domain.Interfaces.Replacer;
+﻿using ConsoleUI.Builder;
 
 public static class Program
 {
@@ -15,13 +10,10 @@ public static class Program
         };
 
         int capacity = 6;
-        List<int> primaryMemory = new List<int>();
 
-        ILoggerAdresser adresserLoger = new LoggerAdresser();
-        ILoggerReplacer replacerLoger = new LoggerReplacer();
+        IAlgorithmBuilder builder = new AlgorithmBuilder();
 
-        IPageReplacer fifo = new FIFOReplacer(adressOrder, primaryMemory, replacerLoger);
-        IPageAdresser pageAdresser = new PageAdresser(fifo, adressOrder, primaryMemory, capacity, adresserLoger);
+        var pageAdresser = builder.BuildFifo(adressOrder, capacity);
 
         pageAdresser.Adressing();
     }
