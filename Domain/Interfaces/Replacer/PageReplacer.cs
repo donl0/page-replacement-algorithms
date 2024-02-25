@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Domain.Interfaces.Replacer
+﻿namespace Domain.Interfaces.Replacer
 {
     public abstract class PageReplacer : IPageReplacer
     {
@@ -10,9 +8,9 @@ namespace Domain.Interfaces.Replacer
         public List<int> PrimaryMemory => new List<int>(_primaryMemory);
         public List<int> RequestOrder => new List<int>(_requestOrder);
 
-        protected PageReplacer(List<int> virtualMemory, List<int> primaryMemory)
+        protected PageReplacer(List<int> requestOrder, List<int> primaryMemory)
         {
-            _requestOrder = virtualMemory;
+            _requestOrder = requestOrder;
             _primaryMemory = primaryMemory;
         }
 
