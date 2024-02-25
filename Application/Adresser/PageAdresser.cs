@@ -4,7 +4,7 @@ using Domain.Interfaces.Replacer;
 
 namespace Application.Adresser
 {
-    public class PageAdresser : BasePageAdresser
+    public sealed class PageAdresser : BasePageAdresser
     {
         private readonly ILoggerAdresser _loggerAdresser;
 

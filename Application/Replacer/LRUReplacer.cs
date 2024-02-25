@@ -1,18 +1,14 @@
 ﻿using Application.Extensions;
 using Application.Interfaces;
-using Domain.Interfaces.Replacer;
 
 namespace Application.Replacer
 {
-    public class LRUReplacer : PageReplacer
+    public sealed class LRUReplacer : ReplacerWithLogger
     {
-        private readonly ILoggerReplacer _logger;
-
         private Queue<int> _lastUsedPages = new Queue<int>();
 
-        public LRUReplacer(List<int> virtualMemory, List<int> primaryMemory, ILoggerReplacer logger) : base(virtualMemory, primaryMemory)
+        public LRUReplacer(List<int> virtualMemory, List<int> primaryMemory, ILoggerReplacer logger) : base(virtualMemory, primaryMemory, logger)
         {
-            _logger = logger;
         }
 
         public override void NotifyAdded(int page)
@@ -35,7 +31,7 @@ namespace Application.Replacer
             AddPage(newPage);
             _lastUsedPages.Enqueue(newPage);
 
-            _logger.Log(pageToRemove, newPage);
+            Log(pageToRemove, newPage);
         }
 
         private bool TryCorrectLastUsed(int page, Queue<int> lastUsed) {

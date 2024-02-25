@@ -1,17 +1,13 @@
 ﻿using Application.Interfaces;
-using Domain.Interfaces.Replacer;
 
 namespace Application.Replacer
 {
-    public class FIFOReplacer : PageReplacer
+    public sealed class FIFOReplacer : ReplacerWithLogger
     {
-        private readonly ILoggerReplacer _logger;
-
         private Queue<int> _tempPages = new Queue<int>();
 
-        public FIFOReplacer(List<int> adressOrder, List<int> primaryMemory, ILoggerReplacer logger) : base(adressOrder, primaryMemory)
+        public FIFOReplacer(List<int> virtualMemory, List<int> primaryMemory, ILoggerReplacer logger) : base(virtualMemory, primaryMemory, logger)
         {
-            _logger = logger;
         }
 
         public override void NotifyAdded(int page)
@@ -34,7 +30,7 @@ namespace Application.Replacer
             _tempPages.Enqueue(newPage);
             AddPage(newPage);
 
-            _logger.Log(pageToRemove, newPage);
+            Log(pageToRemove, newPage);
         }
     }
 }
